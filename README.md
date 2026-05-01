@@ -1,73 +1,79 @@
-# React + TypeScript + Vite
+# TechHaven
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ecommerce de hardware premium. Frontend en React + Vite, backend en Supabase.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Frontend:** React 19, TypeScript, Vite 8, Tailwind CSS v4, GSAP
+- **Backend:** Supabase (Postgres + Auth + Row Level Security)
+- **State:** Zustand (carrito persistido), TanStack Query (productos)
+- **Routing:** React Router v7
 
-## React Compiler
+## Arquitectura de deploy
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+┌─────────────┐     ┌─────────────────┐
+│   Vercel    │────▶│  GitHub (repo)  │
+│  (Frontend) │     │   CI/CD auto    │
+└─────────────┘     └─────────────────┘
+         │
+         │ REST / Auth
+         ▼
+┌──────────────────────────────────────┐
+│            Supabase Cloud            │
+│  Postgres + Auth + Storage + Edge   │
+│  Region: sa-east-1 (São Paulo)       │
+└──────────────────────────────────────┘
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Estructura del proyecto
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```
+src/
+  components/
+    ui/           # Button, Input, Badge, Card
+    layout/       # Header, Footer
+    Landing/      # Hero, Categories, FeaturedProducts, CTA
+    Auth/         # LoginForm, RegisterForm
+    Product/      # ProductCard
+    Cart/         # CartDrawer
+  hooks/          # useAuth, useProducts
+  store/          # Cart store (Zustand + persist)
+  types/          # TypeScript interfaces
+  lib/            # Supabase client, utils
+  pages/          # Home, Products, Login, Register
+supabase/
+  schema.sql      # DDL: products, profiles, RLS, trigger
+  seed.sql        # 12 productos de ejemplo
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Desarrollo local
+
+```bash
+npm install
+# Copiar .env.example a .env y completar credenciales de Supabase
+npm run dev
+```
+
+## Deploy a Vercel
+
+1. Andá a [vercel.com](https://vercel.com) y logueate con GitHub
+2. Click en **Add New Project**
+3. Importá `Mateocas1/test-ecommerce`
+4. Framework preset: **Vite**
+5. Build command: `npm run build`
+6. Output directory: `dist`
+7. Agregá las environment variables:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+8. Click **Deploy**
+
+## Supabase
+
+Dashboard: `https://supabase.com/dashboard/project/nnyjgrkithfhkvsrodrd`
+
+Schema aplicado vía CLI:
+```bash
+npx supabase db query --linked -f supabase/schema.sql
+npx supabase db query --linked -f supabase/seed.sql
 ```
