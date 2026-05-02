@@ -37,8 +37,8 @@ export default function RegisterForm() {
 
   if (success) {
     return (
-      <div className="border border-emerald-900/30 bg-emerald-900/10 p-8 text-center">
-        <h3 className="font-display text-xl text-emerald-400 italic">
+      <div className="border border-emerald-900/30 bg-emerald-950/10 p-8 text-center">
+        <h3 className="font-display text-lg text-emerald-400 tracking-tight">
           Registro exitoso
         </h3>
         <p className="mt-2 text-xs text-text-tertiary">
@@ -96,8 +96,8 @@ export default function RegisterForm() {
       </div>
 
       {error && (
-        <div className="border border-red-900/50 bg-red-900/10 px-4 py-3">
-          <p className="text-[10px] uppercase tracking-wider text-red-400">
+        <div className="border border-red-900/40 bg-red-950/20 px-4 py-3">
+          <p className="text-[11px] text-red-400">
             {error}
           </p>
         </div>

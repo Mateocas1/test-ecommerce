@@ -60,8 +60,8 @@ export default function LoginForm() {
       </div>
 
       {error && (
-        <div className="border border-red-900/50 bg-red-900/10 px-4 py-3">
-          <p className="text-[10px] uppercase tracking-wider text-red-400">
+        <div className="border border-red-900/40 bg-red-950/20 px-4 py-3">
+          <p className="text-[11px] text-red-400">
             {error}
           </p>
         </div>

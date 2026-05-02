@@ -26,16 +26,17 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 py-20">
+      <div className="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12 py-20">
         <div className="grid grid-cols-2 gap-12 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
             <div className="mb-6">
-              <Link to="/" className="flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center border border-accent/30 bg-accent/5">
-                  <Monitor className="h-4 w-4 text-accent-text" />
+              <Link to="/" className="flex items-center gap-2.5">
+                <div className="relative flex h-7 w-7 items-center justify-center">
+                  <div className="absolute inset-0 bg-accent/10 animate-[breathe_3s_ease-in-out_infinite]" />
+                  <Monitor className="relative h-3.5 w-3.5 text-accent-text" strokeWidth={2} />
                 </div>
-                <span className="text-sm font-medium uppercase tracking-[0.2em] text-text">
-                  Tech<b className="text-accent-text">Haven</b>
+                <span className="text-sm font-semibold tracking-tight text-text">
+                  Tech<span className="text-accent-text">Haven</span>
                 </span>
               </Link>
             </div>
@@ -43,12 +44,12 @@ export default function Footer() {
               Hardware seleccionado con propósito. Para quienes entienden que
               cada componente importa.
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               {["GH", "X", "IG"].map((s) => (
                 <a
                   key={s}
                   href="#"
-                  className="flex h-8 w-8 items-center justify-center border border-border text-[10px] font-bold uppercase tracking-wider text-text-tertiary transition-all duration-300 hover:border-accent/50 hover:text-accent-text"
+                  className="flex h-8 w-8 items-center justify-center border border-border text-[10px] font-bold text-text-tertiary transition-all duration-300 hover:border-accent/30 hover:text-accent-text"
                 >
                   {s}
                 </a>
@@ -61,7 +62,7 @@ export default function Footer() {
               <h3 className="mb-6 text-[10px] font-semibold uppercase tracking-[0.2em] text-text-tertiary">
                 {title}
               </h3>
-              <ul className="space-y-4">
+              <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link

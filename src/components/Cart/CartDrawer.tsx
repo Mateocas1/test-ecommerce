@@ -36,7 +36,7 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
     <>
       {open && (
         <div
-          className="fixed inset-0 z-50 bg-bg/80"
+          className="fixed inset-0 z-50 bg-bg/70"
           onClick={onClose}
         />
       )}
@@ -50,30 +50,28 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
         <div className="flex h-full flex-col">
           <div className="flex items-center justify-between border-b border-border px-6 py-5">
             <div className="flex items-center gap-3">
-              <ShoppingCart className="h-4 w-4 text-accent-text" />
-              <h2 className="text-sm font-medium uppercase tracking-[0.15em] text-text">
-                Carrito
-              </h2>
+              <ShoppingCart className="h-4 w-4 text-accent-text" strokeWidth={1.5} />
+              <h2 className="text-sm font-medium text-text">Carrito</h2>
               <span className="font-mono text-[10px] text-text-tertiary">
                 ({totalItems()})
               </span>
             </div>
             <button
               onClick={onClose}
-              className="flex h-8 w-8 items-center justify-center border border-border text-text-tertiary transition-all duration-300 hover:border-accent/50 hover:text-accent-text"
+              className="flex h-8 w-8 items-center justify-center border border-border text-text-tertiary transition-all duration-300 hover:border-accent/30 hover:text-accent-text"
             >
-              <X className="h-4 w-4" />
+              <X className="h-4 w-4" strokeWidth={1.5} />
             </button>
           </div>
 
           {items.length === 0 ? (
-            <div className="flex flex-1 flex-col items-center justify-center gap-6 px-6 text-center">
-              <ShoppingCart className="h-12 w-12 text-text-tertiary" />
+            <div className="flex flex-1 flex-col items-center justify-center gap-5 px-6 text-center">
+              <ShoppingCart className="h-10 w-10 text-text-tertiary" strokeWidth={1} />
               <div>
-                <p className="font-display text-xl text-text italic">
+                <p className="font-display text-lg text-text tracking-tight">
                   Carrito vacío
                 </p>
-                <p className="text-xs text-text-tertiary mt-2">
+                <p className="text-xs text-text-tertiary mt-1">
                   Agregá productos para empezar
                 </p>
               </div>
@@ -91,7 +89,7 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1 min-w-0 mr-4">
-                        <p className="font-display text-base text-text leading-snug">
+                        <p className="font-display text-sm text-text leading-snug tracking-tight">
                           {item.product.name}
                         </p>
                         <p className="font-mono text-[10px] text-text-tertiary mt-1 uppercase tracking-wider">
@@ -102,7 +100,7 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                         onClick={() => removeItem(item.product.id)}
                         className="shrink-0 text-text-tertiary transition-colors duration-300 hover:text-red-400"
                       >
-                        <Trash2 className="h-3 w-3" />
+                        <Trash2 className="h-3 w-3" strokeWidth={1.5} />
                       </button>
                     </div>
 
@@ -112,9 +110,9 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                           onClick={() =>
                             updateQuantity(item.product.id, item.quantity - 1)
                           }
-                          className="flex h-7 w-7 items-center justify-center border border-border text-text-tertiary transition-all duration-300 hover:border-accent/50 hover:text-accent-text"
+                          className="flex h-7 w-7 items-center justify-center border border-border text-text-tertiary transition-all duration-300 hover:border-accent/30 hover:text-accent-text"
                         >
-                          <Minus className="h-3 w-3" />
+                          <Minus className="h-3 w-3" strokeWidth={1.5} />
                         </button>
                         <span className="font-mono text-sm text-text w-6 text-center">
                           {item.quantity}
@@ -123,9 +121,9 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                           onClick={() =>
                             updateQuantity(item.product.id, item.quantity + 1)
                           }
-                          className="flex h-7 w-7 items-center justify-center border border-border text-text-tertiary transition-all duration-300 hover:border-accent/50 hover:text-accent-text"
+                          className="flex h-7 w-7 items-center justify-center border border-border text-text-tertiary transition-all duration-300 hover:border-accent/30 hover:text-accent-text"
                         >
-                          <Plus className="h-3 w-3" />
+                          <Plus className="h-3 w-3" strokeWidth={1.5} />
                         </button>
                       </div>
                       <span className="font-mono text-xs text-accent-text">
@@ -141,7 +139,7 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                   <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-text-tertiary">
                     Total
                   </span>
-                  <span className="font-display text-2xl text-accent-text italic">
+                  <span className="font-mono text-2xl text-accent-text">
                     $
                     {(totalPrice() / 1000)
                       .toFixed(0)

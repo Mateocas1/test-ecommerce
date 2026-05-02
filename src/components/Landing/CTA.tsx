@@ -32,38 +32,44 @@ export default function CTA() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative py-32 overflow-hidden">
+    <section ref={sectionRef} className="relative py-32 lg:py-40 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-accent/[0.02] to-transparent pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
-      <div className="mx-auto max-w-3xl px-6 text-center sm:px-8 lg:px-12">
-        <div className="cta-item mb-6">
-          <div className="mx-auto h-px w-16 bg-accent/50" />
-        </div>
+      <div className="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div className="cta-item mb-6">
+              <div className="h-px w-12 bg-accent/40" />
+            </div>
 
-        <h2 className="cta-item font-display text-5xl sm:text-7xl text-text leading-[1.1]">
-          ¿Listo para el
-          <br />
-          <span className="italic text-accent-text">Upgrade?</span>
-        </h2>
+            <h2 className="cta-item font-display text-5xl sm:text-6xl lg:text-7xl text-text leading-[0.95] tracking-tighter">
+              ¿Listo para el
+              <br />
+              <span className="text-accent-text">Upgrade?</span>
+            </h2>
+          </div>
 
-        <p className="cta-item mx-auto mt-6 max-w-md text-xs leading-relaxed text-text-secondary">
-          Cada componente cuenta. Armá la máquina que realmente merecés con el
-          hardware más exigente del mercado.
-        </p>
+          <div className="lg:pl-12">
+            <p className="cta-item text-sm leading-relaxed text-text-secondary max-w-md">
+              Cada componente cuenta. Armá la máquina que realmente merecés con el
+              hardware más exigente del mercado.
+            </p>
 
-        <div className="cta-item mt-10 flex flex-wrap justify-center gap-4">
-          <Link to="/products">
-            <Button size="lg" className="gap-3 group">
-              <span>Comprar ahora</span>
-              <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
-            </Button>
-          </Link>
-          <Link to="/products?category=peripherals">
-            <Button variant="outline" size="lg">
-              Periféricos
-            </Button>
-          </Link>
+            <div className="cta-item mt-8 flex flex-wrap gap-3">
+              <Link to="/products">
+                <Button size="lg" className="gap-2 group">
+                  Comprar ahora
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
+                </Button>
+              </Link>
+              <Link to="/products?category=peripherals">
+                <Button variant="outline" size="lg">
+                  Periféricos
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,4 +1,3 @@
-import { Card } from "../ui/card"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import type { Product } from "../../types"
@@ -24,8 +23,8 @@ export default function ProductCard({ product }: ProductCardProps) {
   const addItem = useCartStore((s) => s.addItem)
 
   return (
-    <Card className="flex flex-col p-6 group border-0">
-      <div className="mb-6 flex items-start justify-between">
+    <div className="group border border-border bg-surface p-6 transition-all duration-500 hover:border-border-hover">
+      <div className="mb-5 flex items-start justify-between">
         <Badge>{categoryLabels[product.category] ?? product.category}</Badge>
         <span className="font-mono text-[10px] text-text-tertiary">
           $
@@ -35,16 +34,16 @@ export default function ProductCard({ product }: ProductCardProps) {
         </span>
       </div>
 
-      <h3 className="font-display text-xl text-text leading-snug mb-3 transition-colors duration-300 group-hover:text-accent-text">
+      <h3 className="font-display text-lg sm:text-xl text-text leading-snug mb-2 transition-colors duration-300 group-hover:text-accent-text tracking-tight">
         {product.name}
       </h3>
 
-      <p className="text-xs leading-relaxed text-text-secondary mb-6 line-clamp-2">
+      <p className="text-xs leading-relaxed text-text-secondary mb-5 line-clamp-2">
         {product.description}
       </p>
 
       {product.specs && (
-        <div className="mb-6 space-y-1.5 border-t border-border pt-4">
+        <div className="mb-5 space-y-1 border-t border-border pt-4">
           {Object.entries(product.specs).slice(0, 3).map(([key, val]) => (
             <div
               key={key}
@@ -59,16 +58,14 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       )}
 
-      <div className="mt-auto">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => addItem(product)}
-          className="w-full"
-        >
-          Agregar
-        </Button>
-      </div>
-    </Card>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => addItem(product)}
+        className="w-full"
+      >
+        Agregar
+      </Button>
+    </div>
   )
 }

@@ -1,21 +1,22 @@
 import { Link } from "react-router-dom"
-import { Monitor } from "lucide-react"
+import { Zap } from "lucide-react"
 import RegisterForm from "../components/Auth/RegisterForm"
 
 export default function Register() {
   return (
-    <div className="flex min-h-screen items-center justify-center px-4 pt-16">
+    <div className="flex min-h-[100dvh] items-center justify-center px-4 pt-16">
       <div className="w-full max-w-sm">
         <div className="mb-10 text-center">
-          <Link to="/" className="mx-auto mb-8 flex w-fit items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center border border-accent/30 bg-accent/5">
-              <Monitor className="h-4 w-4 text-accent-text" />
+          <Link to="/" className="mx-auto mb-8 inline-flex items-center gap-2.5">
+            <div className="relative flex h-7 w-7 items-center justify-center">
+              <div className="absolute inset-0 bg-accent/10 animate-[breathe_3s_ease-in-out_infinite]" />
+              <Zap className="relative h-3.5 w-3.5 text-accent-text" strokeWidth={2} />
             </div>
-            <span className="text-sm font-medium uppercase tracking-[0.2em] text-text">
-              Tech<b className="text-accent-text">Haven</b>
+            <span className="text-sm font-semibold tracking-tight text-text">
+              Tech<span className="text-accent-text">Haven</span>
             </span>
           </Link>
-          <h1 className="font-display text-4xl text-text italic">
+          <h1 className="font-display text-3xl text-text tracking-tighter">
             Crear cuenta
           </h1>
           <p className="mt-2 text-xs text-text-tertiary">
